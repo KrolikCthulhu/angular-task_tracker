@@ -6,6 +6,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { StoreModule, provideStore } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { appEffects, appReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,8 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore(),
     importProvidersFrom(
-      // EffectsModule.forRoot([UserEffects, TaskEffects]]),
-      // StoreModule.forRoot(appReducers),
+      EffectsModule.forRoot(appEffects),
+      StoreModule.forRoot(appReducers),
       StoreDevtoolsModule.instrument({
         maxAge: 25,
         logOnly: environment.production,

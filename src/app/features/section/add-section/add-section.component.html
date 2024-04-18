@@ -1,0 +1,20 @@
+<!-- @if (isEditing$ | async) { -->
+@if (isEditing) {
+<form [formGroup]="sectionForm">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Новый раздел"
+      formControlName="sectionName"
+      (keydown.enter)="saveSection()"
+      (blur)="saveSection()"
+      #sectionNameInput
+    />
+  </mat-form-field>
+</form>
+} @else {
+<button mat-button extended (click)="startEditing()">
+  <span class="material-icons">add</span>
+  Добавить раздел
+</button>
+}
