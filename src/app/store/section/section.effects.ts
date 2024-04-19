@@ -23,4 +23,18 @@ export class SectionEffects {
       )
     )
   );
+
+  loadSections$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SectionActions.loadSections),
+      mergeMap(() =>
+        this.sectionService.getSections().pipe(
+          map((sections) => SectionActions.loadSectionsSuccess({ sections })),
+          catchError((error) =>
+            of(SectionActions.loadSectionsFailure({ error }))
+          )
+        )
+      )
+    )
+  );
 }

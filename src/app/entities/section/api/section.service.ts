@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Section } from '../model/section.model';
-import { Observable, of } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,6 @@ export class SectionService {
     const sections: Section[] = JSON.parse(
       localStorage.getItem(this.STORAGE_KEY) || '[]'
     );
-    return of(sections);
+    return of(sections).pipe(delay(1000));
   }
 }

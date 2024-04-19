@@ -15,3 +15,15 @@ export const addSectionFailure = createAction(
   '[Section] Add Section Failure',
   props<{ error: any }>()
 );
+
+export const loadSections = createAction('[Section] Load Sections');
+
+export const loadSectionsSuccess = createAction(
+  '[Section] Load Sections Success',
+  props<{ sections: Section[] }>()
+);
+
+export const loadSectionsFailure = createAction(
+  '[Section] Load Sections Failure',
+  props<{ error: any }>()
+);
