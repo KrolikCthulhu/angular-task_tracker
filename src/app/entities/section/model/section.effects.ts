@@ -44,6 +44,25 @@ export class SectionEffects {
         )
     );
 
+    updateSectionTitle$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SectionActions.updateSectionTitle),
+            mergeMap(({ id, newTitle }) =>
+                this.sectionService.updateSectionTitle(id, newTitle).pipe(
+                    map(() =>
+                        SectionActions.updateSectionTitleSuccess({
+                            id,
+                            newTitle,
+                        })
+                    ),
+                    catchError((error) =>
+                        of(SectionActions.updateSectionTitleFailure({ error }))
+                    )
+                )
+            )
+        )
+    );
+
     deleteSection$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SectionActions.deleteSection),

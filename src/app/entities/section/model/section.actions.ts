@@ -42,3 +42,18 @@ export const deleteSectionFailure = createAction(
     '[Section] Delete Section Failure',
     props<{ error: any }>()
 );
+
+export const updateSectionTitle = createAction(
+    '[Section] Update Section Title',
+    props<{ id: Section['id']; newTitle: Section['title'] }>()
+);
+
+export const updateSectionTitleSuccess = createAction(
+    '[Section] Update Section Title Success',
+    props<{ id: Section['id']; newTitle: Section['title'] }>()
+);
+
+export const updateSectionTitleFailure = createAction(
+    '[Section] Update Section Title Failure',
+    props<{ error: any }>()
+);

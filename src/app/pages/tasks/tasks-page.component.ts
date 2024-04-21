@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Section } from '@entities/section/model/section.model';
 import { Store, select } from '@ngrx/store';
@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { SectionCardComponent } from '../../widgets/section-card/section-card.component';
 import { AddSectionComponent } from '../../features/section/add-section/add-section.component';
 import { AppState } from 'app/store';
+import { SectionFacade } from '@entities/section/model/section.facade';
 
 @Component({
     selector: 'app-tasks',
@@ -15,18 +16,13 @@ import { AppState } from 'app/store';
     templateUrl: './tasks-page.component.html',
     styleUrl: './tasks-page.component.scss',
     imports: [CommonModule, SectionCardComponent, AddSectionComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksComponent {
-    private store = inject(Store<AppState>);
-    sections$: Observable<Section[]> = this.store.pipe(
-        select(selectAllSections)
-    );
+    private readonly sectionFacade = inject(SectionFacade);
+    sections$: Observable<Section[]> = this.sectionFacade.sections$;
 
     constructor() {
-        this.store.dispatch(loadSections());
-    }
-
-    ngOnInit(): void {
-        this.store.dispatch(loadSections());
+        this.sectionFacade.loadSections();
     }
 }

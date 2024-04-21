@@ -10,10 +10,8 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { AppState } from '../../../store';
-import { Store } from '@ngrx/store';
 import { Section } from '@entities/section/model/section.model';
-import { addSection } from '@entities/section/model/section.actions';
+import { SectionFacade } from '@entities/section/model/section.facade';
 
 @Component({
     selector: 'app-add-section',
@@ -29,11 +27,11 @@ import { addSection } from '@entities/section/model/section.actions';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddSectionComponent {
-    isEditing: boolean = false;
-    sectionName: FormControl = new FormControl('');
     @ViewChild('sectionNameInput') sectionNameInput!: ElementRef;
 
-    private store = inject(Store<AppState>);
+    isEditing: boolean = false;
+    sectionName: FormControl = new FormControl('');
+    private readonly sectionFacade = inject(SectionFacade);
 
     constructor(private renderer: Renderer2) {}
 
@@ -48,7 +46,7 @@ export class AddSectionComponent {
                 title: this.sectionForm.value.sectionName,
                 tasks: [],
             };
-            this.store.dispatch(addSection({ section: newSection }));
+            this.sectionFacade.addSection(newSection);
         }
         this.cancelEditing();
     }

@@ -1,10 +1,28 @@
 <div class="container">
-    {{ section.title }}
+    @if (isEditing) {
+        <div [formGroup]="sectionForm">
+            <mat-form-field class="example-full-width">
+                <input
+                    matInput
+                    formControlName="sectionName"
+                    (keydown.enter)="saveSection()"
+                    (blur)="saveSection()"
+                    #sectionNameInput
+                />
+            </mat-form-field>
+        </div>
+    } @else {
+        <div class="title" (click)="startEditing()">{{ section.title }}</div>
+    }
 
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <span class="material-icons">more_vert</span>
     </button>
     <mat-menu #menu="matMenu">
+        <button mat-button extended (click)="startEditing()">
+            <span class="material-icons">edit</span>
+            Переименовать раздел
+        </button>
         <app-delete-section [sectionId]="section.id"></app-delete-section>
     </mat-menu>
 </div>

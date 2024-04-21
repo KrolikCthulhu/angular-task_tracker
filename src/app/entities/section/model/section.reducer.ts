@@ -17,7 +17,9 @@ export const sectionReducer = createReducer(
     on(SectionActions.addSection, (state, { section }) =>
         adapter.addOne(section, state)
     ),
-    // on(SectionActions.updateSection, (state, { id, changes }) => adapter.updateOne({ id, changes }, state)),
+    on(SectionActions.updateSectionTitle, (state, { id, newTitle }) =>
+        adapter.updateOne({ id: id, changes: { title: newTitle } }, state)
+    ),
     on(SectionActions.deleteSection, (state, { id }) =>
         adapter.removeOne(id, state)
     ),

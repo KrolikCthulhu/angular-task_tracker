@@ -1,1 +1,3 @@
 src/app/pages/tasks/tasks.component.html
+src/app/features/section/add-section/add-section.component.html
+src/app/widgets/section-card/section-card.component.html

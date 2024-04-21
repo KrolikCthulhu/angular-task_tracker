@@ -1,9 +1,12 @@
-import { Component, Input, inject } from '@angular/core';
-import { deleteSection } from '@entities/section/model/section.actions';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Input,
+    inject,
+} from '@angular/core';
 import { Section } from '@entities/section/model/section.model';
-import { Store } from '@ngrx/store';
-import { AppState } from 'app/store';
 import { MatButtonModule } from '@angular/material/button';
+import { SectionFacade } from '@entities/section/model/section.facade';
 
 @Component({
     selector: 'app-delete-section',
@@ -11,12 +14,13 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [MatButtonModule],
     templateUrl: './delete-section.component.html',
     styleUrl: './delete-section.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeleteSectionComponent {
     @Input() sectionId!: Section['id'];
-    store = inject(Store<AppState>);
+    private readonly sectionFacade = inject(SectionFacade);
 
     onDeleteSection() {
-        this.store.dispatch(deleteSection({ id: this.sectionId }));
+        this.sectionFacade.deleteSection(this.sectionId);
     }
 }
