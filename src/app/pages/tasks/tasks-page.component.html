@@ -1,0 +1,7 @@
+<div class="container">
+    @if (sections$ | async; as sections) { @for (section of sections; track
+    section.id) {
+    <app-section-card [section]="section"></app-section-card>
+    } }
+    <app-add-section></app-add-section>
+</div>

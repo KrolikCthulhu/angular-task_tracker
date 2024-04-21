@@ -43,4 +43,18 @@ export class SectionEffects {
             )
         )
     );
+
+    deleteSection$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SectionActions.deleteSection),
+            mergeMap(({ id }) =>
+                this.sectionService.deleteSection(id).pipe(
+                    map(() => SectionActions.deleteSectionSuccess({ id })),
+                    catchError((error) =>
+                        of(SectionActions.deleteSectionFailure({ error }))
+                    )
+                )
+            )
+        )
+    );
 }

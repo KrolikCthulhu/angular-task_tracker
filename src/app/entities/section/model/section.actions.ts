@@ -27,3 +27,18 @@ export const loadSectionsFailure = createAction(
     '[Section] Load Sections Failure',
     props<{ error: any }>()
 );
+
+export const deleteSection = createAction(
+    '[Section] Delete Section',
+    props<{ id: Section['id'] }>()
+);
+
+export const deleteSectionSuccess = createAction(
+    '[Section] Delete Section Success',
+    props<{ id: Section['id'] }>()
+);
+
+export const deleteSectionFailure = createAction(
+    '[Section] Delete Section Failure',
+    props<{ error: any }>()
+);

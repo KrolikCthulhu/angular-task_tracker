@@ -25,4 +25,15 @@ export class SectionService {
         );
         return of(sections).pipe(delay(1000));
     }
+
+    deleteSection(id: Section['id']): Observable<Section[]> {
+        const sections: Section[] = JSON.parse(
+            localStorage.getItem(this.STORAGE_KEY) || '[]'
+        );
+        const updatedSections: Section[] = sections.filter(
+            (section) => section.id !== id
+        );
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedSections));
+        return of(updatedSections);
+    }
 }
