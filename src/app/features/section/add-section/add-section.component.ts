@@ -32,12 +32,11 @@ export class AddSectionComponent {
     isEditing: boolean = false;
     sectionName: FormControl = new FormControl('');
     private readonly sectionFacade = inject(SectionFacade);
-
-    constructor(private renderer: Renderer2) {}
-
     sectionForm = new FormGroup({
         sectionName: this.sectionName,
     });
+
+    constructor(private renderer: Renderer2) {}
 
     saveSection(): void {
         if (this.sectionForm.value.sectionName) {

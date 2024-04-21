@@ -1,5 +1,6 @@
 <div class="container">
-    @if (isEditing) {
+    <div class="header">
+        @if (isEditing) {
         <div [formGroup]="sectionForm">
             <mat-form-field class="example-full-width">
                 <input
@@ -11,18 +12,25 @@
                 />
             </mat-form-field>
         </div>
-    } @else {
+        } @else {
         <div class="title" (click)="startEditing()">{{ section.title }}</div>
-    }
+        }
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <span class="material-icons">more_vert</span>
-    </button>
-    <mat-menu #menu="matMenu">
-        <button mat-button extended (click)="startEditing()">
-            <span class="material-icons">edit</span>
-            Переименовать раздел
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <span class="material-icons">more_vert</span>
         </button>
-        <app-delete-section [sectionId]="section.id"></app-delete-section>
-    </mat-menu>
+        <mat-menu #menu="matMenu">
+            <button mat-button extended (click)="startEditing()">
+                <span class="material-icons">edit</span>
+                Переименовать раздел
+            </button>
+            <app-delete-section [sectionId]="section.id"></app-delete-section>
+        </mat-menu>
+    </div>
+    <div class="tasks">
+        @for (task of section.tasks; track task.id) {
+        <app-task-card [task]="task"></app-task-card>
+        }
+        <app-add-task [sectionId]="section.id"></app-add-task>
+    </div>
 </div>

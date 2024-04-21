@@ -1,0 +1,9 @@
+<mat-card>
+    <mat-card-content>
+        @if (task.title && task.title.length) {
+        {{ task.title }}
+        } @else {
+        <app-update-task-title [task]="task"></app-update-task-title>
+        }
+    </mat-card-content>
+</mat-card>

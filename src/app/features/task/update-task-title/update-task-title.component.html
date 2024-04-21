@@ -1,0 +1,12 @@
+<div [formGroup]="taskForm">
+    <mat-form-field class="example-full-width">
+        <input
+            matInput
+            placeholder="Напишите название задачи"
+            formControlName="taskTitle"
+            (keydown.enter)="saveTaskTitle()"
+            (blur)="saveTaskTitle()"
+            #sectionNameInput
+        />
+    </mat-form-field>
+</div>

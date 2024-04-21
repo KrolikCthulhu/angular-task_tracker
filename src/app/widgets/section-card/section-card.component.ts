@@ -14,20 +14,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { SectionFacade } from '@entities/section/model/section.facade';
+import { AddTaskComponent } from '../../features/task/add-task/add-task.component';
+import { TaskCardComponent } from '../task-card/task-card.component';
 
 @Component({
     selector: 'app-section-card',
     standalone: true,
     templateUrl: './section-card.component.html',
     styleUrl: './section-card.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         DeleteSectionComponent,
         MatMenuModule,
         MatButtonModule,
         MatInputModule,
         ReactiveFormsModule,
+        AddTaskComponent,
+        TaskCardComponent,
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionCardComponent {
     @Input() section!: Section;
