@@ -10,17 +10,17 @@ import { appEffects, appReducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideAnimationsAsync(),
-    provideStore(),
-    importProvidersFrom(
-      EffectsModule.forRoot(appEffects),
-      StoreModule.forRoot(appReducers),
-      StoreDevtoolsModule.instrument({
-        maxAge: 25,
-        logOnly: environment.production,
-      })
-    ),
-  ],
+    providers: [
+        provideRouter(routes),
+        provideAnimationsAsync(),
+        provideStore(),
+        importProvidersFrom(
+            EffectsModule.forRoot(appEffects),
+            StoreModule.forRoot(appReducers),
+            StoreDevtoolsModule.instrument({
+                maxAge: 25,
+                logOnly: environment.production,
+            })
+        ),
+    ],
 };
