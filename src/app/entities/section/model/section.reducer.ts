@@ -74,5 +74,16 @@ export const sectionReducer = createReducer(
             },
             state
         );
+    }),
+    on(TaskActions.deleteTask, (state, { sectionId, taskId }) => {
+        const section = state.entities[sectionId];
+        if (!section) {
+            return state;
+        }
+        const updatedTasks = section.tasks.filter((task) => task.id !== taskId);
+        return adapter.updateOne(
+            { id: sectionId, changes: { tasks: updatedTasks } },
+            state
+        );
     })
 );

@@ -11,53 +11,27 @@ export class TaskService {
 
     constructor() {}
 
-    getSections(): Section[] {
-        const sectionsJson = localStorage.getItem(this.STORAGE_KEY);
-        return sectionsJson ? JSON.parse(sectionsJson) : [];
-    }
+    getSectionsFromLocalStorage = (): Section[] =>
+        JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]');
 
     saveSections(sections: Section[]): void {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(sections));
     }
 
     addTask(task: Task): Observable<Section[]> {
-        const sections: Section[] = JSON.parse(
-            localStorage.getItem(this.STORAGE_KEY) || '[]'
-        );
+        const sections = this.getSectionsFromLocalStorage();
         const updatedSections = sections.map((section) => {
             if (section.id === task.sectionId) {
                 section.tasks.push(task);
             }
             return section;
         });
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedSections));
+        this.saveSections(updatedSections);
         return of(updatedSections);
     }
 
-    // editTask(task: Task): Observable<Section[]> {
-    //     const sections: Section[] = JSON.parse(
-    //         localStorage.getItem(this.STORAGE_KEY) || '[]'
-    //     );
-    //     const sectionToUpdate = sections.find(
-    //         (section) => section.id === task.sectionId
-    //     );
-    //     if (sectionToUpdate) {
-    //         const taskToUpdate = sectionToUpdate.tasks.find(
-    //             (task) => task.id === task.id
-    //         );
-    //         if (taskToUpdate) {
-    //             Object.assign(taskToUpdate, editedParams);
-    //             localStorage.setItem(
-    //                 this.STORAGE_KEY,
-    //                 JSON.stringify(sections)
-    //             );
-    //             return of(sections);
-    //         }
-    //     }
-    //     return of();
-    // }
     updateTask(task: Task): Observable<Section[]> {
-        const sections = this.getSections();
+        const sections = this.getSectionsFromLocalStorage();
         const sectionIndex = sections.findIndex(
             (section) => section.id === task.sectionId
         );
@@ -70,6 +44,26 @@ export class TaskService {
                 this.saveSections(sections);
                 return of(sections);
             }
+        }
+        return of();
+    }
+
+    deleteTask(
+        sectionId: Section['id'],
+        taskId: Task['id']
+    ): Observable<Section[]> {
+        const sections = this.getSectionsFromLocalStorage();
+        const sectionIndex = sections.findIndex(
+            (section) => section.id === sectionId
+        );
+        if (sectionIndex !== -1) {
+            const section = sections[sectionIndex];
+            const updatedTasks = section.tasks.filter(
+                (task) => task.id !== taskId
+            );
+            section.tasks = updatedTasks;
+            this.saveSections(sections);
+            return of(sections);
         }
         return of();
     }

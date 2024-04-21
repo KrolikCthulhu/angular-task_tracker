@@ -23,25 +23,27 @@ export class TaskEffects {
         )
     );
 
-    // addTask$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(TaskActions.addTask),
-    //         switchMap(({ task }) =>
-    //             this.taskService.addTask(task).pipe(
-    //                 map((sections) => TaskActions.addTaskSuccess({ sections })),
-    //                 catchError((error) =>
-    //                     of(TaskActions.addTaskFailure({ error }))
-    //                 )
-    //             )
-    //         )
-    //     )
-    // );
-
     updateTask$ = createEffect(() =>
         this.actions$.pipe(
             ofType(TaskActions.updateTask),
             switchMap(({ updatedTask }) =>
                 this.taskService.updateTask(updatedTask).pipe(
+                    map((sections) =>
+                        TaskActions.updateTaskSuccess({ sections })
+                    ),
+                    catchError((error) =>
+                        of(TaskActions.updateTaskFailure({ error }))
+                    )
+                )
+            )
+        )
+    );
+
+    deleteTask$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(TaskActions.deleteTask),
+            switchMap(({ sectionId, taskId }) =>
+                this.taskService.deleteTask(sectionId, taskId).pipe(
                     map((sections) =>
                         TaskActions.updateTaskSuccess({ sections })
                     ),
