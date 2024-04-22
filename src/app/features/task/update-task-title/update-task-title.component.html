@@ -1,3 +1,8 @@
+@if (!isEditing) {
+<div (click)="editTaskTitle($event)">
+    {{ task.title }}
+</div>
+} @else {
 <div [formGroup]="taskForm">
     <mat-form-field class="example-full-width">
         <input
@@ -10,3 +15,4 @@
         />
     </mat-form-field>
 </div>
+}

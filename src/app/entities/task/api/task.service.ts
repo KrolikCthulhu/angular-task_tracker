@@ -67,4 +67,15 @@ export class TaskService {
         }
         return of();
     }
+
+    getTaskById(taskId: Task['id']): Observable<Task> {
+        const sections = this.getSectionsFromLocalStorage();
+        for (const section of sections) {
+            const task = section.tasks.find((t) => t.id === taskId);
+            if (task) {
+                return of(task);
+            }
+        }
+        return of();
+    }
 }

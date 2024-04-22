@@ -67,9 +67,15 @@ export class UpdateTaskDateComponent {
             dueDate: date,
         };
         this.taskFacade.updateTask(task);
+        this.toggleEditing();
     }
 
-    toggleEditing() {
+    toggleEditing(event?: MouseEvent): void {
         this.isEditing = !this.isEditing;
+        event?.stopPropagation();
+    }
+
+    handleInputClick(event: MouseEvent): void {
+        event.stopPropagation();
     }
 }

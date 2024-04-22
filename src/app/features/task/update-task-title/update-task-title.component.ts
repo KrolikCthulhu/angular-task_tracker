@@ -25,6 +25,7 @@ export class UpdateTaskTitleComponent implements OnInit {
     @ViewChild('sectionNameInput') sectionNameInput!: ElementRef;
     private readonly taskFacade = inject(TaskFacade);
     taskTitle: FormControl = new FormControl('');
+    isEditing = false;
 
     taskForm = new FormGroup({
         taskTitle: this.taskTitle,
@@ -54,5 +55,21 @@ export class UpdateTaskTitleComponent implements OnInit {
         } else {
             this.taskFacade.deleteTask(this.task.sectionId, this.task.id);
         }
+        this.isEditing = false;
+    }
+
+    editTaskTitle(event?: MouseEvent): void {
+        event?.stopPropagation();
+        this.isEditing = true;
+        this.taskForm.patchValue({
+            taskTitle: this.task.title,
+        });
+        setTimeout(() => {
+            if (this.sectionNameInput) {
+                this.renderer
+                    .selectRootElement(this.sectionNameInput.nativeElement)
+                    .focus();
+            }
+        });
     }
 }

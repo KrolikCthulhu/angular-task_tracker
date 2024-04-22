@@ -1,22 +1,31 @@
-<button
-    mat-icon-button
-    (click)="toggleEditing()"
-    matTooltip="Изменить срок исполнения"
->
-    <span class="material-icons">calendar_today</span>
-</button>
-@if (isEditing) {
-<div [formGroup]="dateForm">
-    <mat-form-field class="example-full-width">
-        <mat-label>Срок исполнения</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dueDate" />
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
-            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+<div class="container">
+    <button
+        mat-icon-button
+        (click)="toggleEditing($event)"
+        matTooltip="Изменить срок исполнения"
+    >
+        <span class="material-icons">calendar_today</span>
+    </button>
+    @if (isEditing) {
+    <div [formGroup]="dateForm">
+        <mat-form-field
+            class="example-full-width"
+            (click)="handleInputClick($event)"
+        >
+            <mat-label>Срок исполнения</mat-label>
+            <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="dueDate"
+            />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    } @else {
+    {{ task.dueDate | date : "dd.MM.yyyy" }}
+    }
 </div>
-} @else {
-{{ task.dueDate | date : "dd.MM.yyyy" }}
-}
