@@ -1,6 +1,4 @@
-<mat-card [routerLink]="['/task', task.id]">
-    <mat-card-content>
-        <app-update-task-title [task]="task"></app-update-task-title>
-        <app-update-task-date [task]="task"></app-update-task-date>
-    </mat-card-content>
-</mat-card>
+<div class="card" [routerLink]="['/task', task.id]">
+    <app-update-task-title [task]="task"></app-update-task-title>
+    <app-update-task-date [task]="task"></app-update-task-date>
+</div>

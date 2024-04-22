@@ -1,0 +1,13 @@
+.card {
+    border: 2px solid var(--gray);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &:hover {
+        border: 2px solid var(--black);
+        cursor: pointer;
+    }
+}

@@ -41,7 +41,6 @@ export const sectionReducer = createReducer(
         error,
     })),
     on(TaskActions.addTask, (state, { task }) => {
-        console.log(task);
         const { sectionId } = task;
         const section = state.entities[sectionId];
         if (!section) {

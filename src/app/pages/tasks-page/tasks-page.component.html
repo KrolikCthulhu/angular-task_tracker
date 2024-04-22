@@ -1,8 +1,37 @@
-<div class="container">
-    @if (sections$ | async; as sections) { 
-        @for (section of sections; track section.id) {
-            <app-section-card [section]="section"></app-section-card>
-        } 
-    }
-    <app-add-section></app-add-section>
+@if (loading$ | async) {
+<div class="spinner">
+    <mat-spinner></mat-spinner>
 </div>
+} @else {
+<div class="container">
+    <div class="filter">
+        фильтр
+        <mat-form-field>
+            <mat-label>статус задачи</mat-label>
+            <mat-select
+                [formControl]="taskStatus"
+                name="status"
+                (selectionChange)="updateTaskStatus()"
+            >
+                @for (status of statuses; track status) {
+                <mat-option [value]="status?.value">
+                    {{ status?.viewValue }}
+                </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <button mat-button extended (click)="clearFilter()">
+            <span class="material-icons">clear</span>
+            Сбросить
+        </button>
+    </div>
+    @if (sections$ | async; as sections) {
+    <div class="sections">
+        @for (section of sections; track section.id) {
+        <app-section-card [section]="section"></app-section-card>
+        }
+        <app-add-section></app-add-section>
+    </div>
+    }
+</div>
+}

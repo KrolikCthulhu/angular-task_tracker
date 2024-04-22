@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { UpdateTaskTitleComponent } from '../../features/task/update-task-title/update-task-title.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { Task } from '@entities/task/model/task.model';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,7 @@ import { SectionFacade } from '@entities/section/model/section.facade';
 import { Section } from '@entities/section/model/section.model';
 import { UpdateTaskStatusComponent } from '../../features/task/update-task-status/update-task-status.component';
 import { UpdateTaskPriorityComponent } from '../../features/task/update-task-priority/update-task-priority.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-task-detail-page',
@@ -21,6 +22,8 @@ import { UpdateTaskPriorityComponent } from '../../features/task/update-task-pri
         UpdateTaskDateComponent,
         UpdateTaskStatusComponent,
         UpdateTaskPriorityComponent,
+        MatButtonModule,
+        RouterModule,
     ],
 })
 export class TaskDetailPageComponent {

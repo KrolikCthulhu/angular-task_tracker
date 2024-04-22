@@ -58,3 +58,8 @@ export const loadTaskFailure = createAction(
     '[Task] Load Task Failure',
     props<{ error: any }>()
 );
+
+export const filterTasksByStatus = createAction(
+    '[Task] Filter Tasks By Status',
+    props<{ status: Task['status'] }>()
+);

@@ -1,4 +1,22 @@
+.spinner {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
 .container {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    padding: 30px;
+
+    .filter {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .sections {
+        display: flex;
+        gap: 20px;
+    }
 }

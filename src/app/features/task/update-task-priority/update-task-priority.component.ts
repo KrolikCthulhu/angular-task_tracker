@@ -41,7 +41,6 @@ export class UpdateTaskPriorityComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.task.priority) this.taskPriority.setValue(this.task.priority);
-        console.log(this.taskPriority);
     }
 
     updateTaskPriority(): void {

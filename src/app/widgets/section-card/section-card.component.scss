@@ -1,5 +1,8 @@
 .container {
-    width: 340px;
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
     .header {
         display: flex;
@@ -9,5 +12,11 @@
         .title:hover {
             cursor: pointer;
         }
+    }
+
+    .tasks {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
 }
