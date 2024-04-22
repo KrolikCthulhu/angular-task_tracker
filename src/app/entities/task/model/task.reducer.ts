@@ -9,16 +9,4 @@ export const adapter: EntityAdapter<Task> = createEntityAdapter<Task>();
 
 export const initialState: TaskState = adapter.getInitialState();
 
-export const taskReducer = createReducer(
-    initialState
-    // on(TaskActions.addTask, (state, { task }) => adapter.addOne(task, state)),
-    // on(
-    //     TaskActions.editTaskSuccess,
-    //     (state, { taskId, sectionId, editedParams }) => {
-    //         return adapter.updateOne(
-    //             { id: taskId, changes: editedParams },
-    //             state
-    //         );
-    //     }
-    // )
-);
+export const taskReducer = createReducer(initialState);

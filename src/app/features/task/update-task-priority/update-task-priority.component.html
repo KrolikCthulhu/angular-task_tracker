@@ -1,0 +1,27 @@
+<div class="container">
+    <button
+        mat-icon-button
+        (click)="toggleEditing($event)"
+        matTooltip="Изменить приоритет задачи"
+    >
+        <span class="material-icons">priority_high</span>
+    </button>
+    @if (isEditing) {
+    <mat-form-field>
+        <mat-label>Приоритет задачи</mat-label>
+        <mat-select
+            [formControl]="taskPriority"
+            name="priority"
+            (selectionChange)="updateTaskPriority()"
+        >
+            @for (priority of priorities; track priority) {
+            <mat-option [value]="priority?.value">
+                {{ priority?.viewValue }}
+            </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    } @else if (task.priority) {
+    {{ TaskPriorityEnum[task.priority] }}
+    }
+</div>

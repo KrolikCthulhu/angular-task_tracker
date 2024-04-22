@@ -31,12 +31,12 @@ export class UpdateTaskStatusComponent implements OnInit {
     private readonly taskFacade = inject(TaskFacade);
     TaskStatusEnum: { [key: string]: string } = TaskStatus;
 
-    statuses: Task['status'][] = [
+    statuses = [
         { value: 'todo', viewValue: this.TaskStatusEnum['todo'] },
         { value: 'inProgress', viewValue: this.TaskStatusEnum['inProgress'] },
         { value: 'done', viewValue: this.TaskStatusEnum['done'] },
     ];
-    taskStatus = new FormControl(this.statuses[0]);
+    taskStatus = new FormControl('');
 
     constructor() {}
 
@@ -50,7 +50,7 @@ export class UpdateTaskStatusComponent implements OnInit {
                 id: this.task.id,
                 title: this.task.title,
                 sectionId: this.task.sectionId,
-                status: this.taskStatus.value,
+                status: this.taskStatus.value as Task['status'],
             };
             this.taskFacade.updateTask(task);
         }

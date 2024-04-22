@@ -4,18 +4,19 @@ export interface Task {
     description?: string;
     dueDate?: Date;
     priority?: 'low' | 'medium' | 'high';
-    status?: Status;
+    status?: 'todo' | 'inProgress' | 'done';
     assignees?: string[];
     sectionId: string;
-}
-
-export interface Status {
-    value: 'todo' | 'inProgress' | 'done';
-    viewValue: string;
 }
 
 export enum TaskStatus {
     todo = 'сделать',
     inProgress = 'в процессе',
     done = 'завершено',
+}
+
+export enum TaskPriority {
+    low = 'низкий',
+    medium = 'средний',
+    high = 'высокий',
 }

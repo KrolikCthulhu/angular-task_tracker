@@ -21,7 +21,7 @@
             }
         </mat-select>
     </mat-form-field>
-    } @else if (task.status !== undefined) {
-    {{ TaskStatusEnum[task.status.value] }}
+    } @else if (task.status) {
+    {{ TaskStatusEnum[task.status] }}
     }
 </div>

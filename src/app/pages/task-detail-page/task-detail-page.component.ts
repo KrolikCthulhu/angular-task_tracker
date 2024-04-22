@@ -8,6 +8,7 @@ import { UpdateTaskDateComponent } from '../../features/task/update-task-date/up
 import { SectionFacade } from '@entities/section/model/section.facade';
 import { Section } from '@entities/section/model/section.model';
 import { UpdateTaskStatusComponent } from '../../features/task/update-task-status/update-task-status.component';
+import { UpdateTaskPriorityComponent } from '../../features/task/update-task-priority/update-task-priority.component';
 
 @Component({
     selector: 'app-task-detail-page',
@@ -19,6 +20,7 @@ import { UpdateTaskStatusComponent } from '../../features/task/update-task-statu
         CommonModule,
         UpdateTaskDateComponent,
         UpdateTaskStatusComponent,
+        UpdateTaskPriorityComponent,
     ],
 })
 export class TaskDetailPageComponent {

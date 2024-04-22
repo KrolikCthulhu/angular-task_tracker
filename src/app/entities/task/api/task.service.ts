@@ -40,7 +40,10 @@ export class TaskService {
                 (t) => t.id === task.id
             );
             if (taskIndex !== -1) {
-                sections[sectionIndex].tasks[taskIndex] = task;
+                sections[sectionIndex].tasks[taskIndex] = {
+                    ...sections[sectionIndex].tasks[taskIndex],
+                    ...task,
+                };
                 this.saveSections(sections);
                 return of(sections);
             }
