@@ -54,6 +54,10 @@ export class TasksComponent {
         this.taskStatus.reset();
     }
 
+    sortByDate(): void {
+        this.sections$ = this.sectionFacade.sectionsTasksSortedByDate$;
+    }
+
     updateTaskStatus(): void {
         if (this.taskStatus.value) {
             this.sections$ = this.sectionFacade.getSectionsFilteredByTaskStatus(

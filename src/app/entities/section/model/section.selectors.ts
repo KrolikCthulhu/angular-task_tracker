@@ -32,3 +32,25 @@ export const selectLoading = createSelector(
     selectSectionState,
     (state: SectionState) => state.loading
 );
+
+export const selectTasksSortedByDate = () =>
+    createSelector(selectAllSections, (sections) => {
+        const sortedSections = sections.map((section) => {
+            const sortedTasks = section.tasks.slice().sort((task1, task2) => {
+                if (task1.dueDate && task2.dueDate) {
+                    return (
+                        new Date(task1.dueDate).getTime() -
+                        new Date(task2.dueDate).getTime()
+                    );
+                } else if (task1.dueDate) {
+                    return -1;
+                } else if (task2.dueDate) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+            return { ...section, tasks: sortedTasks };
+        });
+        return sortedSections;
+    });

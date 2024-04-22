@@ -1,3 +1,4 @@
 src/app/pages/tasks/tasks-page.component.html
 src/app/features/section/add-section/add-section.component.html
-# src/app/widgets/section-card/section-card.component.html
+src/app/widgets/section-card/section-card.component.html
+src/app/widgets/task-card/task-card.component.html

@@ -1,4 +1,10 @@
 <div class="card" [routerLink]="['/task', task.id]">
     <app-update-task-title [task]="task"></app-update-task-title>
     <app-update-task-date [task]="task"></app-update-task-date>
+    @if (task.status) { 
+        Статус: {{ TaskStatusEnum[task.status] }} 
+    } 
+    @if (task.priority) { 
+        Приоритет: {{ TaskPriorityEnum[task.priority] }}
+    }
 </div>

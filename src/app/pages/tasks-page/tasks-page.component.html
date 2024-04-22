@@ -4,7 +4,7 @@
 </div>
 } @else {
 <div class="container">
-    <div class="filter">
+    <div class="filters">
         фильтр
         <mat-form-field>
             <mat-label>статус задачи</mat-label>
@@ -20,9 +20,13 @@
                 }
             </mat-select>
         </mat-form-field>
+        <button mat-button extended (click)="sortByDate()">
+            <span class="material-icons">sort</span>
+            Сортровка по дате
+        </button>
         <button mat-button extended (click)="clearFilter()">
             <span class="material-icons">clear</span>
-            Сбросить
+            Сбросить фильтры
         </button>
     </div>
     @if (sections$ | async; as sections) {

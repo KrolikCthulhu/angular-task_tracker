@@ -13,6 +13,7 @@ import {
     selectAllSections,
     selectLoading,
     selectSectionsFilteredByTaskStatus,
+    selectTasksSortedByDate,
 } from './section.selectors';
 import { Task } from '@entities/task/model/task.model';
 
@@ -24,6 +25,10 @@ export class SectionFacade {
 
     sections$: Observable<Section[]> = this.store.pipe(
         select(selectAllSections)
+    );
+
+    sectionsTasksSortedByDate$: Observable<Section[]> = this.store.pipe(
+        select(selectTasksSortedByDate())
     );
 
     loading$: Observable<boolean> = this.store.pipe(select(selectLoading));
